@@ -6,18 +6,17 @@ import { UserService } from "../core/service/user-service.js";
 
 export default function DashboardPage() {
   const [user] = useContext(UserContext);
-  console.log(user);
   const navigate = useNavigate();
   const logout = async () => {
     navigate("/login");
   };
 
-  const get403 = async () => {
-    UserService.get403();
+  const createPost = async () => {
+    UserService.createPost();
   };
 
   const get404 = async () => {
-    UserService.get403();
+    UserService.get404();
   };
 
   return (
@@ -26,7 +25,7 @@ export default function DashboardPage() {
       <h1>Hello, {user?.name}!</h1>
       <form>
         <SlButton onClick={logout}>Logout</SlButton>
-        <SlButton onClick={get403}>Get403</SlButton>
+        <SlButton onClick={createPost}>createPost</SlButton>
         <SlButton onClick={get404}>Get404</SlButton>
       </form>
     </div>

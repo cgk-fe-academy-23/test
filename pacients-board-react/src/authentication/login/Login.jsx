@@ -9,32 +9,27 @@ import { UserService } from "../../core/service/user-service.js";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [, setUser, isUserLoggedIn, setIsUserLoggedIn] =
-    useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const login = async () => {
     const isLoginSuccessful = await UserService.login();
     if (isLoginSuccessful) {
       const user = await UserService.getUser();
       setUser(user);
-      setIsUserLoggedIn(isLoginSuccessful);
-      window.localStorage.setItem("isUserLoggedIn", isLoginSuccessful);
+      UserService.setIsUserLoggedIn(isLoginSuccessful);
       navigate("/dashboard", { replace: true });
     }
   };
 
   useEffect(() => {
     setUser(initialUserValue);
-    setIsUserLoggedIn(false);
-    window.localStorage.setItem("isUserLoggedIn", false);
+    UserService.setIsUserLoggedIn(false);
   }, []);
 
-  return !isUserLoggedIn ? (
+  return (
     <div className="login-page">
       <form>
         <SlButton onClick={login}>Login</SlButton>
       </form>
     </div>
-  ) : (
-    ""
   );
 }

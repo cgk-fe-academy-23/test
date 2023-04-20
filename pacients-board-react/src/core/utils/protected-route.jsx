@@ -1,15 +1,14 @@
-import { useContext, useEffect } from "react";
-import { UserContext } from "../context/user-context.jsx";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserService } from "../service/user-service.js";
 
 export function ProtectedRoute({ children }) {
-  const [, , isUserLoggedIn] = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    if (!UserService.isUserLoggedIn()) {
       navigate("/login");
     }
   }, []);
 
-  return isUserLoggedIn ? children : "";
+  return UserService.isUserLoggedIn() ? children : "";
 }

@@ -2,6 +2,16 @@
 import { httpClient } from "../http/client.js";
 
 class UserServiceClass {
+  #isUserLoggedIn = window.localStorage.getItem("isUserLoggedIn");
+
+  setIsUserLoggedIn(isUserLoggedIn) {
+    this.#isUserLoggedIn = isUserLoggedIn;
+    window.localStorage.setItem("isUserLoggedIn", this.#isUserLoggedIn);
+  }
+
+  isUserLoggedIn() {
+    return this.#isUserLoggedIn;
+  }
   async getUser() {
     try {
       const data = await httpClient.get("/users");
@@ -11,7 +21,7 @@ class UserServiceClass {
     }
   }
 
-  async getUser404() {
+  async get404() {
     try {
       const data = await httpClient.get("/userrs");
       return data[0];
@@ -20,7 +30,7 @@ class UserServiceClass {
     }
   }
 
-  async get403() {
+  async createPost() {
     try {
       return await httpClient.post("/posts", {
         title: "foo",
