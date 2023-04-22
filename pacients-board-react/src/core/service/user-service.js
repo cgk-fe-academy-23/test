@@ -2,7 +2,7 @@
 import { httpClient } from "../http/client.js";
 
 class UserServiceClass {
-  #isUserLoggedIn = window.localStorage.getItem("isUserLoggedIn");
+  #isUserLoggedIn =window.localStorage.getItem("isUserLoggedIn") === 'true';
 
   setIsUserLoggedIn(isUserLoggedIn) {
     this.#isUserLoggedIn = isUserLoggedIn;
