@@ -1,5 +1,5 @@
 class HttpClient {
-  #basePath = "https://jsonplaceholder.typicode.com";
+  #basePath = "http://localhost:5173/api";
   async #fetch(resource, config) {
     const url = `${this.#basePath + resource}`;
     try {
@@ -22,7 +22,7 @@ class HttpClient {
     const postConfig = {
       method: "POST",
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        "Content-type": "application/json",
       },
       body: JSON.stringify(data),
     };

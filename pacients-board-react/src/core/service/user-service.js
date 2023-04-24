@@ -1,5 +1,5 @@
 //makes api call for user info
-import { httpClient } from "../http/client.js";
+import {httpClient} from "../http/client.js";
 
 class UserServiceClass {
   #isUserLoggedIn =window.localStorage.getItem("isUserLoggedIn") === 'true';
@@ -14,8 +14,7 @@ class UserServiceClass {
   }
   async getUser() {
     try {
-      const data = await httpClient.get("/users");
-      return data[0];
+      return await httpClient.get("/user");
     } catch (e) {
       console.error(e);
     }
@@ -44,12 +43,10 @@ class UserServiceClass {
 
   async login() {
     try {
-      const response = await httpClient.post("/posts", {
-        title: "foo",
-        body: "bar",
-        userId: 100,
+      return await httpClient.post("/public/auth/login", {
+        username: "bianca@gmail.com",
+        password: "bianca123",
       });
-      return !!response;
     } catch (e) {
       return false;
     }

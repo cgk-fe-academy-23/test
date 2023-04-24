@@ -1,5 +1,6 @@
 import {  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {UserService} from "../service/user-service.js";
 
 export const Interceptor = ({ children }) => {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ export const Interceptor = ({ children }) => {
        */
       try {
         const response = await originalFetch(resource, config);
-        if (response.status === 403) {
+        if (response.status === 403 && UserService.isUserLoggedIn()) {
           //redirect to log in
-          navigate("/login", { replace: true });
+          navigate("/login");
         }
         if (response.status === 404) {
           console.log("404 mate box box box box");

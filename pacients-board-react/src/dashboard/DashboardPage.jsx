@@ -22,7 +22,7 @@ export default function DashboardPage() {
   return (
     <div>
       Dashboard page
-      <h1>Hello, {user?.name}!</h1>
+      <h1>Hello, {user?.firstName}!</h1>
       <form>
         <SlButton onClick={logout}>Logout</SlButton>
         <SlButton onClick={createPost}>createPost</SlButton>

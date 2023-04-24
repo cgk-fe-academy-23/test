@@ -12,9 +12,9 @@ setBasePath(
   "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.3.0/dist/"
 );
 function App() {
-    return (
-    <Interceptor>
-      <UserContextProvider>
+  return (
+    <UserContextProvider>
+      <Interceptor>
         <div className="App">
           <div className="page-content">
             <Routes>
@@ -39,8 +39,8 @@ function App() {
           </div>
           <div className="footer"></div>
         </div>
-      </UserContextProvider>
-    </Interceptor>
+      </Interceptor>
+    </UserContextProvider>
   );
 }
 export default App;

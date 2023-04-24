@@ -13,10 +13,14 @@ export default function LoginPage() {
   const login = async () => {
     const isLoginSuccessful = await UserService.login();
     if (isLoginSuccessful) {
-      const user = await UserService.getUser();
-      setUser(user);
-      UserService.setIsUserLoggedIn(isLoginSuccessful);
-      navigate("/dashboard", { replace: true });
+      try {
+        const user = await UserService.getUser();
+        if (user) {
+          setUser(user);
+          UserService.setIsUserLoggedIn(isLoginSuccessful);
+          navigate("/dashboard", { replace: true });
+        }
+      } catch (e) {}
     }
   };
 
